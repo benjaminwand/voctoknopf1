@@ -1,4 +1,4 @@
-update=Mittwoch, 29. November 2017 'u53' 10:53:57
+update=Mittwoch, 29. November 2017 'u14' 11:14:18
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,5 @@ LibName28=contrib
 LibName29=valves
 LibName30=arduino
 LibName31=microchip_pic12mcu
+LibName32=cherry
+LibName33=keyboard_components
