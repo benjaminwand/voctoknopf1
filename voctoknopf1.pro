@@ -1,4 +1,4 @@
-update=Mittwoch, 29. November 2017 'u14' 11:14:18
+update=Mittwoch, 29. November 2017 'u55' 16:55:12
 version=1
 last_client=kicad
 [pcbnew]
@@ -62,3 +62,13 @@ LibName30=arduino
 LibName31=microchip_pic12mcu
 LibName32=cherry
 LibName33=keyboard_components
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
