@@ -36,7 +36,7 @@ LIBS:tutorial-cache
 LIBS:voctoknopf1-cache
 EELAYER 25 0
 EELAYER END
-$Descr User 10237 7087
+$Descr User 10434 7284
 encoding utf-8
 Sheet 1 1
 Title "voctoknopf1"
@@ -142,7 +142,7 @@ U 1 1 5A1E84AB
 P 7250 3950
 F 0 "ARDUINO2" H 7250 4800 70  0000 C CNN
 F 1 "Nano Ethernet Shield" V 7250 3950 70  0000 C CNN
-F 2 "" H 7250 3950 60  0001 C CNN
+F 2 "Modules:Arduino_Nano_WithMountingHoles" H 7250 3950 60  0001 C CNN
 F 3 "" H 7250 3950 60  0000 C CNN
 	1    7250 3950
 	0    -1   -1   0   
@@ -175,7 +175,7 @@ U 1 1 5A1E8DE8
 P 7250 1850
 F 0 "ARDUINO1" H 7250 2700 70  0000 C CNN
 F 1 "ARDUINO_NANO" V 7250 1850 70  0000 C CNN
-F 2 "" H 7250 1850 60  0001 C CNN
+F 2 "Modules:Arduino_Nano_WithMountingHoles" H 7250 1850 60  0001 C CNN
 F 3 "" H 7250 1850 60  0000 C CNN
 	1    7250 1850
 	0    -1   -1   0   

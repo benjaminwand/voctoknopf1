@@ -1,4 +1,4 @@
-update=Donnerstag, 30. November 2017 'u10' 03:10:24
+update=Thursday, 30 November 2017 'pmt' 14:48:17
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,16 +25,6 @@ version=1
 NetIExt=net
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=Pcbnew
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [eeschema]
 version=1
 LibDir=
@@ -75,3 +65,13 @@ LibName33=keyboard_components
 LibName34=/Users/Ben/Downloads/key64-20120707/cherry
 LibName35=/Users/Ben/Downloads/KiCAD-Keyboard-Tutorial-master/tutorial-cache
 LibName36=/Users/Ben/Downloads/arduino_lib-master/arduino
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
