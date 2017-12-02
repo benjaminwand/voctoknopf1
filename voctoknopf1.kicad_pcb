@@ -3,7 +3,7 @@
   (general
     (links 118)
     (no_connects 0)
-    (area 16.174999 16.674999 177.575001 105.325001)
+    (area 4.404999 14.707221 179.185001 121.332778)
     (thickness 1.6)
     (drawings 7)
     (tracks 534)
@@ -69,7 +69,7 @@
     (aux_axis_origin 0 0)
     (visible_elements FFFFFF7F)
     (pcbplotparams
-      (layerselection 0x00030_80000001)
+      (layerselection 0x00000_80000001)
       (usegerberextensions false)
       (excludeedgelayer true)
       (linewidth 0.100000)
@@ -92,7 +92,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory /Users/Ben/Desktop/))
   )
 
   (net 0 "")
@@ -3402,7 +3402,7 @@
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
     (polygon
       (pts
-        (xy 177.75 106) (xy 15.5 106) (xy 15.5 15.5) (xy 177.75 15.5) (xy 177.75 106)
+        (xy 177.75 106) (xy 15.5 106) (xy 15.5 15.5) (xy 177.75 15.5)
       )
     )
     (filled_polygon
