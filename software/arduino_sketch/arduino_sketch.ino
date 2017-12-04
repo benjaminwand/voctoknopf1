@@ -36,6 +36,26 @@
   
   With help from 
   http://www.arduino.cc/en/Tutorial/ButtonStateChange
+
+wenn man den voctocore fragt get_config antwortet er ngefähr sowas
+"server_config {"DEFAULT": 
+{}, "mix": {"videocaps": "video/x-raw,format=I420,width=960,
+height=540,framerate=25/1,pixel-aspect-ratio=1/1,
+interlace-mode=progressive", "audiocaps": "audio/x-raw,format=S16LE,
+channels=2,layout=interleaved,rate=48000", 
+"sources": "cam1,cam2,cam3,grabber", "kind": "img", "imguri": 
+"file:///home/sophie/Documents/rollout/background.png"}, 
+"output-buffers": {"mix_out": "10000"}, "fullscreen": {}, 
+"side-by-side-equal": {}, "side-by-side-preview": 
+{"asize": "800x450", "apos": "12/12", "bsize": "320x180", "bpos": 
+"640/360"}, "picture-in-picture": {"pipsize": "320x180", "pippos": 
+"640/360"}, "previews": {"enabled": "false", "deinterlace": "false"}, 
+"stream-blanker": {"enabled": "true", "sources": "pause", "volume": 
+"1.0", "kind": "img", "imguri": 
+"file:///home/sophie/Documents/rollout/background.png"}, 
+"mirrors": {"enabled": "true"}}"
+
+Da kann  men sehen wie die chanels heißen etc.
 */
 
 // pin mapping
