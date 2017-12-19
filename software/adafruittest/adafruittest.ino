@@ -9,7 +9,6 @@ void setup() {
   mcp2.begin(1);      // Start MCP 2 on Hardware address 0x21
 
   mcp1.pinMode(7, INPUT); // Define GPA7 on MCP1 as input
-  mcp1.pullUp(7, HIGH);  // Activate Internal Pull-Up Resistor
 
   mcp1.pinMode(8, OUTPUT); // Define GPB0 on MCP1 as Output
   mcp2.pinMode(15, OUTPUT); // Define GPB7 on MCP2 as Output
