@@ -5,4 +5,4 @@ Lessons learnt after PCB production:
 * wrong footprint for resistors, too short
 * wrong footprint for cherry switches, contacts for LEDs are too far apart
 * wrong footprint for StreamOn switch, needs to bend up two diagonal contacts
-* 4.7k ohm pull-up-resistors are required between A4 and 5V and A5 and 5V
+* 1.5k ohm pull-up-resistors are required between A4 and 5V and A5 and 5V
