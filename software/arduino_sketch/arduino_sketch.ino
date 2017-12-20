@@ -128,26 +128,26 @@ void setup() {
   mcp1.pinMode(button_cam1_a, INPUT);
   mcp1.pinMode(button_cam2_a, INPUT);
   mcp1.pinMode(button_cam3_a, INPUT);
-  mcp1.pinMode(button_slides_b, INPUT);
-  mcp1.pinMode(button_cam1_b, INPUT);
-  mcp1.pinMode(button_cam2_b, INPUT);
-  mcp1.pinMode(button_cam3_b, INPUT);
-  mcp1.pinMode(button_take, INPUT);
-  mcp1.pinMode(button_stream, INPUT);
+  mcp2.pinMode(button_slides_b, INPUT);
+  mcp2.pinMode(button_cam1_b, INPUT);
+  mcp2.pinMode(button_cam2_b, INPUT);
+  mcp2.pinMode(button_cam3_b, INPUT);
+  mcp2.pinMode(button_take, INPUT);
+  pinMode(button_stream, INPUT);
   
   // initialize the LEDs as output:
-  mcp2.pinMode(led_fullscreen, OUTPUT);
-  mcp2.pinMode(led_side_by_side_preview, OUTPUT);
-  mcp2.pinMode(led_picture_in_picture, OUTPUT);
-  mcp2.pinMode(led_slides_a, OUTPUT);
-  mcp2.pinMode(led_cam1_a, OUTPUT);
-  mcp2.pinMode(led_cam2_a, OUTPUT);
-  mcp2.pinMode(led_cam3_a, OUTPUT);
+  mcp1.pinMode(led_fullscreen, OUTPUT);
+  mcp1.pinMode(led_side_by_side_preview, OUTPUT);
+  mcp1.pinMode(led_picture_in_picture, OUTPUT);
+  mcp1.pinMode(led_slides_a, OUTPUT);
+  mcp1.pinMode(led_cam1_a, OUTPUT);
+  mcp1.pinMode(led_cam2_a, OUTPUT);
+  mcp1.pinMode(led_cam3_a, OUTPUT);
   mcp2.pinMode(led_slides_b, OUTPUT);
   mcp2.pinMode(led_cam1_b, OUTPUT);
   mcp2.pinMode(led_cam2_b, OUTPUT);
   mcp2.pinMode(led_cam3_b, OUTPUT);
-  pinMode(led_take, OUTPUT);
+  mcp2.pinMode(led_take, OUTPUT);
   pinMode(led_stream_red, OUTPUT);
   pinMode(led_stream_green, OUTPUT);
   
