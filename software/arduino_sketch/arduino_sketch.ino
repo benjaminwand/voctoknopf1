@@ -9,37 +9,20 @@
 #include "Adafruit_MCP23017.h"
 
 /*
- TODO: Kommunikation mit dem Voctocore, Zeile 316
-       und Stream Status abfragen etc, Zeile 326 bis Ende
+ TODO: Ethernet
+       TCP
+       Kommunikation mit dem Voctocore, Zeile 334
+       und Stream Status abfragen etc, Zeile 343 bis Ende
  
   Hardware frontend for Voctomix
   https://github.com/voc/voctomix
 
   created 9. Nov 2017
   last improved 20. December 2017
-
-  The circuit, several instances of:
-  - pushbutton attached to pin from +5V
-  - 10 kilohm resistor attached to pin from ground
-  - LED attached from pin to ground with 220 ohm resistor
-  
-  Mapping, for reference
-  22/23 fullscreen (button, LED)
-  24/25 side_by_side_preview (...)
-  26/27 picture_in_picture
-  28/29 slides a
-  30/31 cam1 a
-  32/33 cam2 a
-  34/35 cam3 a
-  36/37 slides b
-  38/39 cam1 b
-  40/41 cam2 b
-  42/43 cam3 b
-  44/45 take
-  46/47/48 stream (button, LED red, LED green)
   
   With help from 
   http://www.arduino.cc/en/Tutorial/ButtonStateChange
+  and several friends
 
 wenn man den voctocore fragt get_config antwortet er ngefähr sowas
 "server_config {"DEFAULT": 
@@ -363,8 +346,6 @@ void loop() {
   stream
   stream_status =       ;   // muss noch gemacht werden !! 
                             // < get_stream_status
-                            // Frage: wie oft kann man den Voctocore das fragen 
-                            // ohne dass er genervt ist?
   if (stream_status == live) {   
       digitalWrite(led_stream_red, LOW);
       digitalWrite(led_stream_green, HIGH);  
