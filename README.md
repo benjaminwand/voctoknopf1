@@ -6,6 +6,7 @@ Lessons learnt after PCB production V 1.0:
 * the Cherry MX from reichelt.de aren’t for PCB mount, be more careful when shopping
 * wrong footprint for StreamOn switch, fix: bend up two diagonal contacts
 * 1.5k ohm pull-up-resistors are required between A4 and 5V and A5 and 5V
+* the buttons would look more evenly illuminated if the LED was behind the switches -> turn the Cherry MX around 180°
 
 Shopping list:
 * 1 arduino nano (clone)
