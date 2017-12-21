@@ -136,11 +136,21 @@ void setup() {
   
   // initialize serial communication:
   Serial.begin(9600);
+  /*
+because of:
+String video_a = "slides"; 
+String video_b = "cam_1";
+String composite_mode = "side_by_side_preview";
+illuminate buttons:
+*/
+  mcp1.digitalWrite(led_side_by_side_preview, HIGH);
+  mcp1.digitalWrite(led_slides_a, HIGH);
+  mcp2.digitalWrite(led_cam1_b, HIGH);
 }
 
 
 void loop() {
-                                                   // OnButtonPush
+                                                    // OnButtonPush
   // fullscreen
   buttonState = mcp1.digitalRead(button_fullscreen);    // read the pushbutton input pin
   if (buttonState != lastButtonState_fullscreen) { // compare to lastButtonState
