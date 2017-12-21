@@ -19,3 +19,4 @@ Shopping list:
 * 14 resistors 220
 * 13 resistors 10k
 * 2 resistors 1.5k
+* 4 nuts and bolts M3 (best: screws with countersunk head)
