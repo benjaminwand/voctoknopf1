@@ -11,14 +11,14 @@
 /*
  TODO: Ethernet
        TCP
-       Kommunikation mit dem Voctocore, Zeile 334
-       und Stream Status abfragen etc, Zeile 343 bis Ende
+       Kommunikation mit dem Voctocore
+       und Stream Status abfragen etc
  
   Hardware frontend for Voctomix
   https://github.com/voc/voctomix
 
   created 9. Nov 2017
-  last improved 20. December 2017
+  last improved 25. December 2017
   
   With help from 
   http://www.arduino.cc/en/Tutorial/ButtonStateChange
@@ -42,7 +42,7 @@ channels=2,layout=interleaved,rate=48000",
 "file:///home/sophie/Documents/rollout/background.png"}, 
 "mirrors": {"enabled": "true"}}"
 
-Da kann  men sehen wie die chanels heißen etc.
+Da kann man sehen wie die chanels heißen etc.
 */
 
 Adafruit_MCP23017 mcp1; // Create MCP 1
@@ -136,16 +136,39 @@ void setup() {
   
   // initialize serial communication:
   Serial.begin(9600);
-  /*
+  
+  // test LEDs
+  mcp1.digitalWrite(led_fullscreen, HIGH);
+  mcp1.digitalWrite(led_side_by_side_preview, HIGH);
+  mcp1.digitalWrite(led_picture_in_picture, HIGH);
+  mcp1.digitalWrite(led_slides_a, HIGH);
+  mcp1.digitalWrite(led_cam1_a, HIGH);
+  mcp1.digitalWrite(led_cam2_a, HIGH);
+  mcp1.digitalWrite(led_cam3_a, HIGH);
+  mcp2.digitalWrite(led_slides_b, HIGH);
+  mcp2.digitalWrite(led_cam1_b, HIGH);
+  mcp2.digitalWrite(led_cam2_b, HIGH);
+  mcp2.digitalWrite(led_cam3_b, HIGH);
+  digitalWrite(led_stream_red, HIGH);
+  digitalWrite(led_stream_green, HIGH); 
+  delay(1000);
+    /*
 because of:
 String video_a = "slides"; 
 String video_b = "cam_1";
 String composite_mode = "side_by_side_preview";
-illuminate buttons:
+keep some buttons illuminated:
 */
-  mcp1.digitalWrite(led_side_by_side_preview, HIGH);
-  mcp1.digitalWrite(led_slides_a, HIGH);
-  mcp2.digitalWrite(led_cam1_b, HIGH);
+  mcp1.digitalWrite(led_fullscreen, LOW);
+  mcp1.digitalWrite(led_picture_in_picture, LOW);
+  mcp1.digitalWrite(led_cam1_a, LOW);
+  mcp1.digitalWrite(led_cam2_a, LOW);
+  mcp1.digitalWrite(led_cam3_a, LOW);
+  mcp2.digitalWrite(led_slides_b, LOW);
+  mcp2.digitalWrite(led_cam2_b, LOW);
+  mcp2.digitalWrite(led_cam3_b, LOW);
+  digitalWrite(led_stream_red, LOW);
+  digitalWrite(led_stream_green, LOW); 
 }
 
 
