@@ -149,6 +149,7 @@ void setup() {
   mcp2.digitalWrite(led_cam1_b, HIGH);
   mcp2.digitalWrite(led_cam2_b, HIGH);
   mcp2.digitalWrite(led_cam3_b, HIGH);
+  mcp2.digitalWrite(led_take, HIGH);
   digitalWrite(led_stream_red, HIGH);
   digitalWrite(led_stream_green, HIGH); 
   delay(1000);
