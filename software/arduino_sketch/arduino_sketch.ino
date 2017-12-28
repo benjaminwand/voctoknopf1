@@ -12,7 +12,7 @@
   Hardware frontend for Voctomix
   https://github.com/voc/voctomix
   created 9. Nov 2017
-  last improved 25. December 2017
+  last changed 25. December 2017
   
   With help from 
   http://www.arduino.cc/en/Tutorial/ButtonStateChange
@@ -372,7 +372,7 @@ void loop() {
   //stream_on 
  /* Serial.println("< get stream status");
   stream_status = Serial.read();
-  if (stream_status == live) {   
+  if (stream_status == "live") {   
       digitalWrite(led_stream_red, LOW);
       digitalWrite(led_stream_green, HIGH);  
     } 
@@ -384,7 +384,7 @@ void loop() {
     buttonState = digitalRead(button_stream);      //OnButtonPush
    if (buttonState != lastButtonState_stream) {     
     if (buttonState == HIGH) {   
-          if (stream_status == live) {       
+          if (stream_status == "live") {       
               Serial.println("<set_stream_blank pause");
               digitalWrite(led_stream_red, HIGH);
               digitalWrite(led_stream_green, LOW);              
