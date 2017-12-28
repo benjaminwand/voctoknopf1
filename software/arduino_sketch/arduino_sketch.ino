@@ -7,7 +7,7 @@
  TODO: Ethernet
        TCP
        Kommunikation mit dem Voctocore
-       und Stream Status abfragen etc
+       StreamOn
  
   Hardware frontend for Voctomix
   https://github.com/voc/voctomix
@@ -16,7 +16,8 @@
   
   With help from 
   http://www.arduino.cc/en/Tutorial/ButtonStateChange
-  and several friends
+  and many friends
+  
 wenn man den voctocore fragt get_config antwortet er ngefähr sowas
 "server_config {"DEFAULT": 
 {}, "mix": {"videocaps": "video/x-raw,format=I420,width=960,
@@ -89,6 +90,9 @@ String video_b = "cam1";
 String composite_mode = "side_by_side_preview";
 
 String stream_status;
+
+unsigned long previousMillis = 0;        // will store last time "get strem_status"
+const long interval = 1000;       // constants won't change:
 
 void setup() {
 
@@ -366,13 +370,21 @@ void loop() {
     }
     delay(1);                         
   }
-  lastButtonState_take = buttonState;      //abfragen ob stream status geändert hat, dann LED LOW
+  lastButtonState_take = buttonState;      //dann fragen ob message angekommen ist, dann LED LOW
 
 
   //stream_on 
- /* Serial.println("< get stream status");
+  
+   unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) { // save the last time you blinked the LED
+    previousMillis = currentMillis;
+    Serial.println("< get stream status");
+    }
+    
+  //Serial.println("< get stream status");
   stream_status = Serial.read();
-  if (stream_status == "live") {   
+  if (stream_status == "> stream_status live") {   
       digitalWrite(led_stream_red, LOW);
       digitalWrite(led_stream_green, HIGH);  
     } 
@@ -384,7 +396,7 @@ void loop() {
     buttonState = digitalRead(button_stream);      //OnButtonPush
    if (buttonState != lastButtonState_stream) {     
     if (buttonState == HIGH) {   
-          if (stream_status == "live") {       
+          if (stream_status == "> stream_status live") {       
               Serial.println("<set_stream_blank pause");
               digitalWrite(led_stream_red, HIGH);
               digitalWrite(led_stream_green, LOW);              
@@ -400,5 +412,5 @@ void loop() {
     delay(1);                         
   }
   lastButtonState_stream = buttonState;  
-  */
+  
 }
