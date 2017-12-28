@@ -381,10 +381,10 @@ void loop() {
     previousMillis = currentMillis;
     Serial.println("< get stream status");
     }
+
     
-  //Serial.println("< get stream status");
   stream_status = Serial.read();
-  if (stream_status == "> stream_status live") {   
+  if (stream_status == "< stream_status live") {   
       digitalWrite(led_stream_red, LOW);
       digitalWrite(led_stream_green, HIGH);  
     } 
@@ -393,16 +393,17 @@ void loop() {
       digitalWrite(led_stream_green, LOW);  
     }
     
+    
     buttonState = digitalRead(button_stream);      //OnButtonPush
    if (buttonState != lastButtonState_stream) {     
     if (buttonState == HIGH) {   
-          if (stream_status == "> stream_status live") {       
-              Serial.println("<set_stream_blank pause");
+          if (stream_status == "< stream_status live") {       
+              Serial.println("> set_stream_blank pause");
               digitalWrite(led_stream_red, HIGH);
               digitalWrite(led_stream_green, LOW);              
               } 
           else {
-              Serial.println("set_stream_live");
+              Serial.println("> set_stream_live");
               digitalWrite(led_stream_red, LOW);
               digitalWrite(led_stream_green, HIGH);
             }                     
@@ -411,6 +412,7 @@ void loop() {
     }
     delay(1);                         
   }
+  
   lastButtonState_stream = buttonState;  
   
 }
