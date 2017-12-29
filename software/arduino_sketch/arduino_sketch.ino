@@ -91,9 +91,6 @@ String composite_mode = "side_by_side_preview";
 
 String stream_status;
 
-unsigned long previousMillis = 0;        // will store last time "get strem_status"
-const long interval = 1000;       // constants won't change:
-
 void setup() {
 
   mcp1.begin(0);      // Start MCP 1 on Hardware address 0x20
@@ -132,6 +129,7 @@ void setup() {
   
   // initialize serial communication:
   Serial.begin(9600);
+  Serial.println("get_stream_status");    // Stream on?
   
   // test LEDs
   mcp1.digitalWrite(led_fullscreen, HIGH);
@@ -377,14 +375,6 @@ void loop() {
 
 
   //stream_on 
-  
-   unsigned long currentMillis = millis();
-
-  if (currentMillis - previousMillis >= interval) { // save the last time you blinked the LED
-    previousMillis = currentMillis;
-    Serial.println("get_stream_status");
-    }
-
     
   stream_status = Serial.read();
   if (stream_status == "stream_status live") {   
