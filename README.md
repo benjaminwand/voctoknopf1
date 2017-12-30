@@ -1,9 +1,11 @@
+This is a community projects, help from many friends.
+
 The **keycaps** are: <https://github.com/benjaminwand/Cherry-MX-keycaps/blob/master/with%20LED/gothic.FCStd>, 20 * 33,5 mm for the composite mode buttons and 25 * 25 mm for the camera/channel buttons and the take button. Please adjust the side lengths in the spreadsheet of the file.
 
 Lessons learnt after PCB production V 1.0: 
-* wrong footprint for resistors, too short
+* slightly wrong footprint for resistors, too short
 * wrong footprint for cherry switches, contacts for LEDs are too far apart
-* the Cherry MX from reichelt.de aren’t for PCB mount, be more careful when shopping
+* the Cherry MX I got from reichelt.de aren’t for PCB mount, be more careful when shopping
 * wrong footprint for StreamOn switch, fix: bend up two diagonal contacts
 * 1.5k ohm pull-up-resistors are required between A4 and 5V and A5 and 5V
 * the buttons would look more evenly illuminated if the LED was behind the switches -> turn the Cherry MX around 180°
