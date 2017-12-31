@@ -363,7 +363,8 @@ void loop() {
     if (buttonState == HIGH) {
       if(composite_mode == "fullscreen") {
          Serial.println("set_videos_and_composite " + video_a + " * " + composite_mode);                                                 
-      } else 
+      } 
+      else 
       Serial.println("set_videos_and_composite " + video_a + " " + video_b + " " + composite_mode); 
       mcp2.digitalWrite(led_take, HIGH);                        
     } 
@@ -385,7 +386,7 @@ void loop() {
       digitalWrite(led_stream_red, HIGH);
       digitalWrite(led_stream_green, LOW);  
     }
-    
+//    
     
     buttonState = digitalRead(button_stream);      //OnButtonPush
    if (buttonState != lastButtonState_stream) {     
