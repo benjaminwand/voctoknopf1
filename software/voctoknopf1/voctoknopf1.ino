@@ -2,19 +2,19 @@
 #include "Adafruit_MCP23017.h"
 
 /*
- TODO: Ethernet
-       TCP
-       Kommunikation mit dem Voctocore
-       StreamOn
+TODO: Ethernet
+TCP
+Kommunikation mit dem Voctocore
+StreamOn
 
-  Hardware frontend for Voctomix
-  https://github.com/voc/voctomix
-  created 9. Nov 2017
-  last changed 25. December 2017
+Hardware frontend for Voctomix
+https://github.com/voc/voctomix
+created 9. Nov 2017
+last changed 25. December 2017
 
-  With help from
-  http://www.arduino.cc/en/Tutorial/ButtonStateChange
-  and many friends
+With help from
+http://www.arduino.cc/en/Tutorial/ButtonStateChange
+and many friends
 
 wenn man den voctocore fragt get_config antwortet er ngefähr sowas
 "server_config {"DEFAULT":
@@ -91,320 +91,320 @@ String stream_status;
 
 void setup() {
 
-  mcp1.begin(0);      // Start MCP 1 on Hardware address 0x20
-  mcp2.begin(1);      // Start MCP 2 on Hardware address 0x21
+    mcp1.begin(0);      // Start MCP 1 on Hardware address 0x20
+    mcp2.begin(1);      // Start MCP 2 on Hardware address 0x21
 
-  // initialize the button pins as input:
-  mcp1.pinMode(button_fullscreen, INPUT);
-  mcp1.pinMode(button_side_by_side_preview, INPUT);
-  mcp1.pinMode(button_picture_in_picture, INPUT);
-  mcp1.pinMode(button_slides_a, INPUT);
-  mcp1.pinMode(button_cam1_a, INPUT);
-  mcp1.pinMode(button_cam2_a, INPUT);
-  mcp1.pinMode(button_cam3_a, INPUT);
-  mcp2.pinMode(button_slides_b, INPUT);
-  mcp2.pinMode(button_cam1_b, INPUT);
-  mcp2.pinMode(button_cam2_b, INPUT);
-  mcp2.pinMode(button_cam3_b, INPUT);
-  mcp2.pinMode(button_take, INPUT);
-  pinMode(button_stream, INPUT);
+    // initialize the button pins as input:
+    mcp1.pinMode(button_fullscreen, INPUT);
+    mcp1.pinMode(button_side_by_side_preview, INPUT);
+    mcp1.pinMode(button_picture_in_picture, INPUT);
+    mcp1.pinMode(button_slides_a, INPUT);
+    mcp1.pinMode(button_cam1_a, INPUT);
+    mcp1.pinMode(button_cam2_a, INPUT);
+    mcp1.pinMode(button_cam3_a, INPUT);
+    mcp2.pinMode(button_slides_b, INPUT);
+    mcp2.pinMode(button_cam1_b, INPUT);
+    mcp2.pinMode(button_cam2_b, INPUT);
+    mcp2.pinMode(button_cam3_b, INPUT);
+    mcp2.pinMode(button_take, INPUT);
+    pinMode(button_stream, INPUT);
 
-  // initialize the LEDs as output:
-  mcp1.pinMode(led_fullscreen, OUTPUT);
-  mcp1.pinMode(led_side_by_side_preview, OUTPUT);
-  mcp1.pinMode(led_picture_in_picture, OUTPUT);
-  mcp1.pinMode(led_slides_a, OUTPUT);
-  mcp1.pinMode(led_cam1_a, OUTPUT);
-  mcp1.pinMode(led_cam2_a, OUTPUT);
-  mcp1.pinMode(led_cam3_a, OUTPUT);
-  mcp2.pinMode(led_slides_b, OUTPUT);
-  mcp2.pinMode(led_cam1_b, OUTPUT);
-  mcp2.pinMode(led_cam2_b, OUTPUT);
-  mcp2.pinMode(led_cam3_b, OUTPUT);
-  mcp2.pinMode(led_take, OUTPUT);
-  pinMode(led_stream_red, OUTPUT);
-  pinMode(led_stream_green, OUTPUT);
+    // initialize the LEDs as output:
+    mcp1.pinMode(led_fullscreen, OUTPUT);
+    mcp1.pinMode(led_side_by_side_preview, OUTPUT);
+    mcp1.pinMode(led_picture_in_picture, OUTPUT);
+    mcp1.pinMode(led_slides_a, OUTPUT);
+    mcp1.pinMode(led_cam1_a, OUTPUT);
+    mcp1.pinMode(led_cam2_a, OUTPUT);
+    mcp1.pinMode(led_cam3_a, OUTPUT);
+    mcp2.pinMode(led_slides_b, OUTPUT);
+    mcp2.pinMode(led_cam1_b, OUTPUT);
+    mcp2.pinMode(led_cam2_b, OUTPUT);
+    mcp2.pinMode(led_cam3_b, OUTPUT);
+    mcp2.pinMode(led_take, OUTPUT);
+    pinMode(led_stream_red, OUTPUT);
+    pinMode(led_stream_green, OUTPUT);
 
-  // initialize serial communication:
-  Serial.begin(9600);
-  Serial.println("get_stream_status");    // Stream on?
+    // initialize serial communication:
+    Serial.begin(9600);
+    Serial.println("get_stream_status");    // Stream on?
 
-  // test LEDs
-  mcp1.digitalWrite(led_fullscreen, HIGH);
-  mcp1.digitalWrite(led_side_by_side_preview, HIGH);
-  mcp1.digitalWrite(led_picture_in_picture, HIGH);
-  mcp1.digitalWrite(led_slides_a, HIGH);
-  mcp1.digitalWrite(led_cam1_a, HIGH);
-  mcp1.digitalWrite(led_cam2_a, HIGH);
-  mcp1.digitalWrite(led_cam3_a, HIGH);
-  mcp2.digitalWrite(led_slides_b, HIGH);
-  mcp2.digitalWrite(led_cam1_b, HIGH);
-  mcp2.digitalWrite(led_cam2_b, HIGH);
-  mcp2.digitalWrite(led_cam3_b, HIGH);
-  mcp2.digitalWrite(led_take, HIGH);
-  digitalWrite(led_stream_red, HIGH);
-  digitalWrite(led_stream_green, HIGH);
-  delay(1000);
+    // test LEDs
+    mcp1.digitalWrite(led_fullscreen, HIGH);
+    mcp1.digitalWrite(led_side_by_side_preview, HIGH);
+    mcp1.digitalWrite(led_picture_in_picture, HIGH);
+    mcp1.digitalWrite(led_slides_a, HIGH);
+    mcp1.digitalWrite(led_cam1_a, HIGH);
+    mcp1.digitalWrite(led_cam2_a, HIGH);
+    mcp1.digitalWrite(led_cam3_a, HIGH);
+    mcp2.digitalWrite(led_slides_b, HIGH);
+    mcp2.digitalWrite(led_cam1_b, HIGH);
+    mcp2.digitalWrite(led_cam2_b, HIGH);
+    mcp2.digitalWrite(led_cam3_b, HIGH);
+    mcp2.digitalWrite(led_take, HIGH);
+    digitalWrite(led_stream_red, HIGH);
+    digitalWrite(led_stream_green, HIGH);
+    delay(1000);
     /*
-because of:
-String video_a = "slides";
-String video_b = "cam1";
-String composite_mode = "side_by_side_preview";
-keep some buttons illuminated:
-*/
-  mcp1.digitalWrite(led_fullscreen, LOW);
-  mcp1.digitalWrite(led_picture_in_picture, LOW);
-  mcp1.digitalWrite(led_cam1_a, LOW);
-  mcp1.digitalWrite(led_cam2_a, LOW);
-  mcp1.digitalWrite(led_cam3_a, LOW);
-  mcp2.digitalWrite(led_slides_b, LOW);
-  mcp2.digitalWrite(led_cam2_b, LOW);
-  mcp2.digitalWrite(led_cam3_b, LOW);
-  digitalWrite(led_stream_red, LOW);
-  digitalWrite(led_stream_green, LOW);
+    because of:
+    String video_a = "slides";
+    String video_b = "cam1";
+    String composite_mode = "side_by_side_preview";
+    keep some buttons illuminated:
+    */
+    mcp1.digitalWrite(led_fullscreen, LOW);
+    mcp1.digitalWrite(led_picture_in_picture, LOW);
+    mcp1.digitalWrite(led_cam1_a, LOW);
+    mcp1.digitalWrite(led_cam2_a, LOW);
+    mcp1.digitalWrite(led_cam3_a, LOW);
+    mcp2.digitalWrite(led_slides_b, LOW);
+    mcp2.digitalWrite(led_cam2_b, LOW);
+    mcp2.digitalWrite(led_cam3_b, LOW);
+    digitalWrite(led_stream_red, LOW);
+    digitalWrite(led_stream_green, LOW);
 }
 
 
 void loop() {
-                                                    // OnButtonPush
-  // fullscreen
-  buttonState = mcp1.digitalRead(button_fullscreen);    // read the pushbutton input pin
-  if (buttonState != lastButtonState_fullscreen) { // compare to lastButtonState
-    if (buttonState == HIGH) {
-                                               // if the current state is LOW, then
-      composite_mode = "fullscreen";               // the button just got pushed
-      //Serial.println("composite_mode fullscreen selected");  // and things happen
-      mcp1.digitalWrite(led_fullscreen, HIGH);
-      mcp1.digitalWrite(led_side_by_side_preview, LOW);
-      mcp1.digitalWrite(led_picture_in_picture, LOW);
+    // OnButtonPush
+    // fullscreen
+    buttonState = mcp1.digitalRead(button_fullscreen);    // read the pushbutton input pin
+    if (buttonState != lastButtonState_fullscreen) { // compare to lastButtonState
+        if (buttonState == HIGH) {
+            // if the current state is LOW, then
+            composite_mode = "fullscreen";               // the button just got pushed
+            //Serial.println("composite_mode fullscreen selected");  // and things happen
+            mcp1.digitalWrite(led_fullscreen, HIGH);
+            mcp1.digitalWrite(led_side_by_side_preview, LOW);
+            mcp1.digitalWrite(led_picture_in_picture, LOW);
+        }
+        else {                                         // do nothing / placeholder
+        }
+        delay(1);                                      // delay bit to avoid bouncing
     }
-    else {                                         // do nothing / placeholder
-    }
-    delay(1);                                      // delay bit to avoid bouncing
-  }
-  lastButtonState_fullscreen = buttonState;        // save the current state as the last state,
-                                                   // for next time through the loop
+    lastButtonState_fullscreen = buttonState;        // save the current state as the last state,
+    // for next time through the loop
 
-                                                   // end OnButtonPush
+    // end OnButtonPush
 
-  // side-by-side-preview
-  buttonState = mcp1.digitalRead(button_side_by_side_preview);
-  if (buttonState != lastButtonState_side_by_side_preview) {
-    if (buttonState == HIGH) {
-      composite_mode = "side_by_side_preview";
-      //Serial.println("composite_mode side_by_side_preview selected");
-      mcp1.digitalWrite(led_side_by_side_preview, HIGH);
-      mcp1.digitalWrite(led_fullscreen, LOW);
-      mcp1.digitalWrite(led_picture_in_picture, LOW);
+    // side-by-side-preview
+    buttonState = mcp1.digitalRead(button_side_by_side_preview);
+    if (buttonState != lastButtonState_side_by_side_preview) {
+        if (buttonState == HIGH) {
+            composite_mode = "side_by_side_preview";
+            //Serial.println("composite_mode side_by_side_preview selected");
+            mcp1.digitalWrite(led_side_by_side_preview, HIGH);
+            mcp1.digitalWrite(led_fullscreen, LOW);
+            mcp1.digitalWrite(led_picture_in_picture, LOW);
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_side_by_side_preview = buttonState;
+    lastButtonState_side_by_side_preview = buttonState;
 
-  // picture_in_picture
-  buttonState = mcp1.digitalRead(button_picture_in_picture);
-  if (buttonState != lastButtonState_picture_in_picture) {
-    if (buttonState == HIGH) {
-      composite_mode = "picture_in_picture";
-      //Serial.println("composite_mode picture_in_picture selected");
-      mcp1.digitalWrite(led_picture_in_picture, HIGH);
-      mcp1.digitalWrite(led_side_by_side_preview, LOW);
-      mcp1.digitalWrite(led_fullscreen, LOW);
+    // picture_in_picture
+    buttonState = mcp1.digitalRead(button_picture_in_picture);
+    if (buttonState != lastButtonState_picture_in_picture) {
+        if (buttonState == HIGH) {
+            composite_mode = "picture_in_picture";
+            //Serial.println("composite_mode picture_in_picture selected");
+            mcp1.digitalWrite(led_picture_in_picture, HIGH);
+            mcp1.digitalWrite(led_side_by_side_preview, LOW);
+            mcp1.digitalWrite(led_fullscreen, LOW);
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_picture_in_picture = buttonState;
+    lastButtonState_picture_in_picture = buttonState;
 
-  //slides_a
-   buttonState = mcp1.digitalRead(button_slides_a);
-  if (buttonState != lastButtonState_slides_a) {
-    if (buttonState == HIGH) {
-      video_a = "slides";
-      //Serial.println("slides for channel a selected");
-      mcp1.digitalWrite(led_slides_a, HIGH);
-      mcp1.digitalWrite(led_cam1_a, LOW);
-      mcp1.digitalWrite(led_cam2_a, LOW);
-      mcp1.digitalWrite(led_cam3_a, LOW);
+    //slides_a
+    buttonState = mcp1.digitalRead(button_slides_a);
+    if (buttonState != lastButtonState_slides_a) {
+        if (buttonState == HIGH) {
+            video_a = "slides";
+            //Serial.println("slides for channel a selected");
+            mcp1.digitalWrite(led_slides_a, HIGH);
+            mcp1.digitalWrite(led_cam1_a, LOW);
+            mcp1.digitalWrite(led_cam2_a, LOW);
+            mcp1.digitalWrite(led_cam3_a, LOW);
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_slides_a = buttonState;
+    lastButtonState_slides_a = buttonState;
 
-  //cam1_a
-   buttonState = mcp1.digitalRead(button_cam1_a);
-  if (buttonState != lastButtonState_cam1_a) {
-    if (buttonState == HIGH) {
-      video_a = "cam1";
-      //Serial.println("cam1 for channel a selected");
-      mcp1.digitalWrite(led_slides_a, LOW);
-      mcp1.digitalWrite(led_cam1_a, HIGH);
-      mcp1.digitalWrite(led_cam2_a, LOW);
-      mcp1.digitalWrite(led_cam3_a, LOW);
+    //cam1_a
+    buttonState = mcp1.digitalRead(button_cam1_a);
+    if (buttonState != lastButtonState_cam1_a) {
+        if (buttonState == HIGH) {
+            video_a = "cam1";
+            //Serial.println("cam1 for channel a selected");
+            mcp1.digitalWrite(led_slides_a, LOW);
+            mcp1.digitalWrite(led_cam1_a, HIGH);
+            mcp1.digitalWrite(led_cam2_a, LOW);
+            mcp1.digitalWrite(led_cam3_a, LOW);
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_cam1_a = buttonState;
+    lastButtonState_cam1_a = buttonState;
 
-  //cam2_a
-   buttonState = mcp1.digitalRead(button_cam2_a);
-  if (buttonState != lastButtonState_cam2_a) {
-    if (buttonState == HIGH) {
-      video_a = "cam2";
-      //Serial.println("cam2 for channel a selected");
-      mcp1.digitalWrite(led_slides_a, LOW);
-      mcp1.digitalWrite(led_cam1_a, LOW);
-      mcp1.digitalWrite(led_cam2_a, HIGH);
-      mcp1.digitalWrite(led_cam3_a, LOW);
+    //cam2_a
+    buttonState = mcp1.digitalRead(button_cam2_a);
+    if (buttonState != lastButtonState_cam2_a) {
+        if (buttonState == HIGH) {
+            video_a = "cam2";
+            //Serial.println("cam2 for channel a selected");
+            mcp1.digitalWrite(led_slides_a, LOW);
+            mcp1.digitalWrite(led_cam1_a, LOW);
+            mcp1.digitalWrite(led_cam2_a, HIGH);
+            mcp1.digitalWrite(led_cam3_a, LOW);
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_cam2_a = buttonState;
+    lastButtonState_cam2_a = buttonState;
 
     //cam3_a
-   buttonState = mcp1.digitalRead(button_cam3_a);
-  if (buttonState != lastButtonState_cam3_a) {
-    if (buttonState == HIGH) {
-      video_a = "cam3";
-      //Serial.println("cam3 for channel a selected");
-      mcp1.digitalWrite(led_slides_a, LOW);
-      mcp1.digitalWrite(led_cam1_a, LOW);
-      mcp1.digitalWrite(led_cam2_a, LOW);
-      mcp1.digitalWrite(led_cam3_a, HIGH);
+    buttonState = mcp1.digitalRead(button_cam3_a);
+    if (buttonState != lastButtonState_cam3_a) {
+        if (buttonState == HIGH) {
+            video_a = "cam3";
+            //Serial.println("cam3 for channel a selected");
+            mcp1.digitalWrite(led_slides_a, LOW);
+            mcp1.digitalWrite(led_cam1_a, LOW);
+            mcp1.digitalWrite(led_cam2_a, LOW);
+            mcp1.digitalWrite(led_cam3_a, HIGH);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_cam3_a = buttonState;
+
+    //slides_b
+    buttonState = mcp2.digitalRead(button_slides_b);
+    if (buttonState != lastButtonState_slides_b) {
+        if (buttonState == HIGH) {
+            video_b = "slides";
+            //Serial.println("slides for channel b selected");
+            mcp2.digitalWrite(led_slides_b, HIGH);
+            mcp2.digitalWrite(led_cam1_b, LOW);
+            mcp2.digitalWrite(led_cam2_b, LOW);
+            mcp2.digitalWrite(led_cam3_b, LOW);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_slides_b = buttonState;
+
+    //cam1_b
+    buttonState = mcp2.digitalRead(button_cam1_b);
+    if (buttonState != lastButtonState_cam1_b) {
+        if (buttonState == HIGH) {
+            video_b = "cam1";
+            //Serial.println("cam1 for channel b selected");
+            mcp2.digitalWrite(led_slides_b, LOW);
+            mcp2.digitalWrite(led_cam1_b, HIGH);
+            mcp2.digitalWrite(led_cam2_b, LOW);
+            mcp2.digitalWrite(led_cam3_b, LOW);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_cam1_b = buttonState;
+
+    //cam2_b
+    buttonState = mcp2.digitalRead(button_cam2_b);
+    if (buttonState != lastButtonState_cam2_b) {
+        if (buttonState == HIGH) {
+            video_b = "cam2";
+            //Serial.println("cam2 for channel b selected");
+            mcp2.digitalWrite(led_slides_b, LOW);
+            mcp2.digitalWrite(led_cam1_b, LOW);
+            mcp2.digitalWrite(led_cam2_b, HIGH);
+            mcp2.digitalWrite(led_cam3_b, LOW);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_cam2_b = buttonState;
+
+    //cam3_b
+    buttonState = mcp2.digitalRead(button_cam3_b);
+    if (buttonState != lastButtonState_cam3_b) {
+        if (buttonState == HIGH) {
+            video_b = "cam3";
+            //Serial.println("cam3 for channel b selected");
+            mcp2.digitalWrite(led_slides_b, LOW);
+            mcp2.digitalWrite(led_cam1_b, LOW);
+            mcp2.digitalWrite(led_cam2_b, LOW);
+            mcp2.digitalWrite(led_cam3_b, HIGH);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_cam3_b = buttonState;
+
+    //take
+    buttonState = mcp2.digitalRead(button_take);
+    if (buttonState != lastButtonState_take) {
+        if (buttonState == HIGH) {
+            if(composite_mode == "fullscreen") {
+                Serial.println("set_videos_and_composite " + video_a + " * " + composite_mode);
+            }
+            else
+            Serial.println("set_videos_and_composite " + video_a + " " + video_b + " " + composite_mode);
+            mcp2.digitalWrite(led_take, HIGH);
+        }
+        else {
+        }
+        delay(1);
+    }
+    lastButtonState_take = buttonState;      //dann fragen ob message angekommen ist, dann LED LOW
+
+
+    //stream_on
+
+    stream_status = Serial.read();
+    if (stream_status == "stream_status live") {
+        digitalWrite(led_stream_red, LOW);
+        digitalWrite(led_stream_green, HIGH);
     }
     else {
+        digitalWrite(led_stream_red, HIGH);
+        digitalWrite(led_stream_green, LOW);
     }
-    delay(1);
-  }
-  lastButtonState_cam3_a = buttonState;
-
-  //slides_b
-   buttonState = mcp2.digitalRead(button_slides_b);
-  if (buttonState != lastButtonState_slides_b) {
-    if (buttonState == HIGH) {
-      video_b = "slides";
-      //Serial.println("slides for channel b selected");
-      mcp2.digitalWrite(led_slides_b, HIGH);
-      mcp2.digitalWrite(led_cam1_b, LOW);
-      mcp2.digitalWrite(led_cam2_b, LOW);
-      mcp2.digitalWrite(led_cam3_b, LOW);
-    }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_slides_b = buttonState;
-
-  //cam1_b
-   buttonState = mcp2.digitalRead(button_cam1_b);
-  if (buttonState != lastButtonState_cam1_b) {
-    if (buttonState == HIGH) {
-      video_b = "cam1";
-      //Serial.println("cam1 for channel b selected");
-      mcp2.digitalWrite(led_slides_b, LOW);
-      mcp2.digitalWrite(led_cam1_b, HIGH);
-      mcp2.digitalWrite(led_cam2_b, LOW);
-      mcp2.digitalWrite(led_cam3_b, LOW);
-    }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_cam1_b = buttonState;
-
-  //cam2_b
-   buttonState = mcp2.digitalRead(button_cam2_b);
-  if (buttonState != lastButtonState_cam2_b) {
-    if (buttonState == HIGH) {
-      video_b = "cam2";
-      //Serial.println("cam2 for channel b selected");
-      mcp2.digitalWrite(led_slides_b, LOW);
-      mcp2.digitalWrite(led_cam1_b, LOW);
-      mcp2.digitalWrite(led_cam2_b, HIGH);
-      mcp2.digitalWrite(led_cam3_b, LOW);
-    }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_cam2_b = buttonState;
-
-  //cam3_b
-   buttonState = mcp2.digitalRead(button_cam3_b);
-  if (buttonState != lastButtonState_cam3_b) {
-    if (buttonState == HIGH) {
-      video_b = "cam3";
-      //Serial.println("cam3 for channel b selected");
-      mcp2.digitalWrite(led_slides_b, LOW);
-      mcp2.digitalWrite(led_cam1_b, LOW);
-      mcp2.digitalWrite(led_cam2_b, LOW);
-      mcp2.digitalWrite(led_cam3_b, HIGH);
-    }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_cam3_b = buttonState;
-
-  //take
-   buttonState = mcp2.digitalRead(button_take);
-  if (buttonState != lastButtonState_take) {
-    if (buttonState == HIGH) {
-      if(composite_mode == "fullscreen") {
-         Serial.println("set_videos_and_composite " + video_a + " * " + composite_mode);
-      }
-      else
-      Serial.println("set_videos_and_composite " + video_a + " " + video_b + " " + composite_mode);
-      mcp2.digitalWrite(led_take, HIGH);
-    }
-    else {
-    }
-    delay(1);
-  }
-  lastButtonState_take = buttonState;      //dann fragen ob message angekommen ist, dann LED LOW
-
-
-  //stream_on
-
-  stream_status = Serial.read();
-  if (stream_status == "stream_status live") {
-      digitalWrite(led_stream_red, LOW);
-      digitalWrite(led_stream_green, HIGH);
-    }
-    else {
-      digitalWrite(led_stream_red, HIGH);
-      digitalWrite(led_stream_green, LOW);
-    }
-//
+    //
 
     buttonState = digitalRead(button_stream);      //OnButtonPush
-   if (buttonState != lastButtonState_stream) {
-    if (buttonState == HIGH) {
-          if (stream_status == "> stream_status live") {
-              Serial.println("set_stream_blank pause");
-              digitalWrite(led_stream_red, HIGH);
-              digitalWrite(led_stream_green, LOW);
-              }
-          else {
-              Serial.println("set_stream live");
-              digitalWrite(led_stream_red, LOW);
-              digitalWrite(led_stream_green, HIGH);
+    if (buttonState != lastButtonState_stream) {
+        if (buttonState == HIGH) {
+            if (stream_status == "> stream_status live") {
+                Serial.println("set_stream_blank pause");
+                digitalWrite(led_stream_red, HIGH);
+                digitalWrite(led_stream_green, LOW);
             }
+            else {
+                Serial.println("set_stream live");
+                digitalWrite(led_stream_red, LOW);
+                digitalWrite(led_stream_green, HIGH);
+            }
+        }
+        else {
+        }
+        delay(1);
     }
-    else {
-    }
-    delay(1);
-  }
 
-  lastButtonState_stream = buttonState;
+    lastButtonState_stream = buttonState;
 
 }
