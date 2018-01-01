@@ -1,2 +1,8 @@
 ## FreeCAD backup files:
 **/*.FCStd1
+
+### PlatformIO ###
+.pioenvs
+.piolibdeps
+.clang_complete
+.gcc-flags.json
