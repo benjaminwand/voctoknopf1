@@ -177,9 +177,7 @@ void loop() {
             mcp1.digitalWrite(led_fullscreen, HIGH);
             mcp1.digitalWrite(led_side_by_side_preview, LOW);
             mcp1.digitalWrite(led_picture_in_picture, LOW);
-        }
-        else {                                         // do nothing / placeholder
-        }
+        } else {;}                                   // do nothing / placeholder
         delay(1);                                      // delay bit to avoid bouncing
     }
     lastButtonState_fullscreen = buttonState;        // save the current state as the last state,
@@ -197,8 +195,7 @@ void loop() {
             mcp1.digitalWrite(led_fullscreen, LOW);
             mcp1.digitalWrite(led_picture_in_picture, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_side_by_side_preview = buttonState;
@@ -213,8 +210,7 @@ void loop() {
             mcp1.digitalWrite(led_side_by_side_preview, LOW);
             mcp1.digitalWrite(led_fullscreen, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_picture_in_picture = buttonState;
@@ -230,8 +226,7 @@ void loop() {
             mcp1.digitalWrite(led_cam2_a, LOW);
             mcp1.digitalWrite(led_cam3_a, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_slides_a = buttonState;
@@ -247,8 +242,7 @@ void loop() {
             mcp1.digitalWrite(led_cam2_a, LOW);
             mcp1.digitalWrite(led_cam3_a, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam1_a = buttonState;
@@ -264,8 +258,7 @@ void loop() {
             mcp1.digitalWrite(led_cam2_a, HIGH);
             mcp1.digitalWrite(led_cam3_a, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam2_a = buttonState;
@@ -281,8 +274,7 @@ void loop() {
             mcp1.digitalWrite(led_cam2_a, LOW);
             mcp1.digitalWrite(led_cam3_a, HIGH);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam3_a = buttonState;
@@ -298,8 +290,7 @@ void loop() {
             mcp2.digitalWrite(led_cam2_b, LOW);
             mcp2.digitalWrite(led_cam3_b, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_slides_b = buttonState;
@@ -315,8 +306,7 @@ void loop() {
             mcp2.digitalWrite(led_cam2_b, LOW);
             mcp2.digitalWrite(led_cam3_b, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam1_b = buttonState;
@@ -332,8 +322,7 @@ void loop() {
             mcp2.digitalWrite(led_cam2_b, HIGH);
             mcp2.digitalWrite(led_cam3_b, LOW);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam2_b = buttonState;
@@ -349,8 +338,7 @@ void loop() {
             mcp2.digitalWrite(led_cam2_b, LOW);
             mcp2.digitalWrite(led_cam3_b, HIGH);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_cam3_b = buttonState;
@@ -361,13 +349,12 @@ void loop() {
         if (buttonState == HIGH) {
             if(composite_mode == "fullscreen") {
                 Serial.println("set_videos_and_composite " + video_a + " * " + composite_mode);
+            } else {
+                Serial.println("set_videos_and_composite " + video_a + " " + video_b + " " + composite_mode);
             }
-            else
-            Serial.println("set_videos_and_composite " + video_a + " " + video_b + " " + composite_mode);
             mcp2.digitalWrite(led_take, HIGH);
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
     lastButtonState_take = buttonState;      //dann fragen ob message angekommen ist, dann LED LOW
@@ -400,11 +387,9 @@ void loop() {
                 digitalWrite(led_stream_green, HIGH);
             }
         }
-        else {
-        }
+        else {;}
         delay(1);
     }
 
     lastButtonState_stream = buttonState;
-
 }
