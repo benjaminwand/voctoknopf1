@@ -2,7 +2,7 @@ This is a community projects, help from many friends.
 
 The **keycaps** are: <https://github.com/benjaminwand/Cherry-MX-keycaps/blob/master/with%20LED/gothic.FCStd>, 20 * 33,5 mm for the composite mode buttons and 25 * 25 mm for the camera/channel buttons and the take button. Please adjust the side lengths in the spreadsheet of the file.
 
-Lessons learnt after PCB production V 1.0: 
+#### Lessons learnt after PCB production V 1.0: 
 * slightly wrong footprint for resistors, too short
 * wrong footprint for cherry switches, contacts for LEDs are too far apart
 * the Cherry MX I got from reichelt.de aren’t for PCB mount, be more careful when shopping
@@ -10,7 +10,11 @@ Lessons learnt after PCB production V 1.0:
 * 1.5k ohm pull-up-resistors are required between A4 and 5V and A5 and 5V
 * the buttons would look more evenly illuminated if the LED was behind the switches -> turn the Cherry MX around 180°
 
-Shopping list:
+#### Lessons learnt regarding the case
+* I’ve actually included small changes into the file after printing, print as-is, and slice everything the way around it is supposed to end up. Yes, printing the buttons upside down would be faster but looks ugly. I found it easier to remove the support-material when the buttons were printed with raft.
+* Print everything with transparent filament and then paint up the upper side of the case (except from the letters !!!) with a dark-ish pen that isn’t water-soluble. Due to the LEDs inside, the letters become illuminated.
+
+#### Shopping list:
 * 1 arduino nano (clone)
 * 1 ethernet-shield for arduino nano
 * 12 Cherry MX switches with holes for LEDs, for PCB mount. I used ‘clear’ and would go for ‘brown’ next time.
