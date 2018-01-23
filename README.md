@@ -1,6 +1,6 @@
 This is a hardware-interface vor [voctomix](https://github.com/voc/voctomix/tree/master/voctocore), developed late 2017 and tried in a few talks at 34c3.
 
-Key features are:
+### Key features are:
 
 * Custom PCB
 * Cherry MX switches with custom 3D-printed keycaps
@@ -24,6 +24,7 @@ The **keycaps** are [gothic.FCStd](https://github.com/benjaminwand/Cherry-MX-key
 * the buttons would look more evenly illuminated if the LED was behind the switches -> turn the Cherry MX around 180°
 
 See [here](graphics/bugfixes.jpg) for a photo with hardware fixes.
+![graphics/Schaltplan.png](graphics/Schaltplan.png)
 
 ### Lessons learnt regarding the case
 * I’ve actually included small changes into the file after printing, print as-is, and slice everything the way around it is supposed to end up. Yes, printing the buttons upside down would be faster but looks ugly. I found it easier to remove the support-material when the buttons were printed with raft.
@@ -41,8 +42,6 @@ See [here](graphics/bugfixes.jpg) for a photo with hardware fixes.
 * 13 resistors 10k
 * 2 resistors 1.5k
 * 4 nuts and bolts M3 (best: screws with countersunk head)
-
-![graphics/Schaltplan.png](graphics/Schaltplan.png)
 
 ### Status
 One device has been built so far and has been successfully used in a few talks on the 34th Chaos Communication Congress.
