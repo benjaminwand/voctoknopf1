@@ -42,7 +42,7 @@ See [here](graphics/bugfixes.jpg) for a photo with hardware fixes.
 * 2 resistors 1.5k
 * 4 nuts and bolts M3 (best: screws with countersunk head)
 
-![graphics/Schaltplan.pdf](graphics/Schaltplan.pdf)
+![graphics/Schaltplan.png](graphics/Schaltplan.png)
 
 ### Status
 One device has been built so far and has been successfully used in a few talks on the 34th Chaos Communication Congress.
